@@ -49,6 +49,27 @@ class App extends Component {
     this.setState({esCarroVisible : !this.state.esCarroVisible})
   }
 
+  quitarDelCarro = (producto) =>{
+    const {carro, esCarroVisible} = this.state
+
+    if (carro.find(x => (x.nombre === producto.nombre && x.cantidad > 0))) {
+      const newCarro = carro.map(x => 
+        (x.nombre === producto.nombre)
+        ? ({
+          ...x,
+          cantidad : x.cantidad - 1
+        })
+        : carro
+      )
+
+      return this.setState({carro : newCarro})
+    }
+
+    return (!esCarroVisible )
+
+  
+  }
+
   render(){
     const {esCarroVisible} = this.state
     return(
@@ -62,6 +83,7 @@ class App extends Component {
             <Productos 
             agregarAlCarro={this.agregarAlCarro}
             productos={this.state.productos}
+            quitarDelCarro = {this.quitarDelCarro}
             />   
           </Layout>
           

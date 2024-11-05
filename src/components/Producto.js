@@ -1,5 +1,6 @@
 import { Component } from "react";
 import Button from "./Button";
+import RemoveButton from "./RemoveButton";
 
 const styles = {
     producto : {
@@ -16,7 +17,7 @@ const styles = {
 
 class Producto extends Component{
     render(){
-        const {producto , agregarAlCarro} = this.props
+        const {producto , agregarAlCarro , quitarDelCarro} = this.props
         //console.log(this.props);
         return(
             <div style={styles.producto}>
@@ -26,6 +27,9 @@ class Producto extends Component{
                 <Button onClick = { () => agregarAlCarro(producto) } >
                     Agregar al carro
                 </Button>
+                <RemoveButton onClick = { () => quitarDelCarro(producto) } >
+                    Quitar del Carro
+                </RemoveButton>
             </div>
         )
     }
